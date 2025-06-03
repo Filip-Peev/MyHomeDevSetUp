@@ -38,4 +38,5 @@ This setup is useful for creating isolated environments for homedev, testing, or
 
 ## Notes
 
-This architecture is not meant for production but rather for testing and experimentation. Performance might be significantly affected due to the nested virtualization layers.
+This architecture is not meant for production but rather for testing and experimentation. Performance might be significantly affected due to the nested virtualization layers!  
+If you want to replicate this setup, open guide.md and follow the instructions there. We won't use VMWare, only VirtualBox.
