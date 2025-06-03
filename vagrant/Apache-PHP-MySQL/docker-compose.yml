@@ -1,0 +1,58 @@
+services:
+  # MySQL Service
+  db:
+    image: mysql:8.0 # Using a specific version for stability
+    container_name: mysql-db
+    environment:
+      MYSQL_ROOT_PASSWORD: master1234 # Your specified password
+      MYSQL_DATABASE: my_database # You can change this to your desired database name
+      MYSQL_USER: my_user # You can change this to your desired user
+      MYSQL_PASSWORD: my_password # You can change this to your desired user password
+    ports:
+      - "3306:3306" # Expose MySQL port to your host (optional for dev, useful for external tools)
+    volumes:
+      - db_data:/var/lib/mysql # Persistent storage for your database data
+      # Optional: Uncomment to initialize your database with SQL files
+      # - ./docker/db/init:/docker-entrypoint-initdb.d
+    restart: unless-stopped
+
+  # PHP-FPM Service
+  php:
+    build:
+      context: . # Build from the current directory
+      dockerfile: docker/php/Dockerfile # Path to your PHP Dockerfile
+    container_name: php-fpm
+    volumes:
+      - ./src:/var/www/html # Mount your project code into the container
+      - ./docker/php/php.ini:/usr/local/etc/php/php.ini # Optional: Custom php.ini
+    depends_on:
+      - db # Ensure DB starts before PHP
+    # Recommended for dev: expose Xdebug port if you plan to use it
+    # ports:
+    #   - "9003:9003" 
+    restart: unless-stopped
+
+  # Apache Service
+  web:
+    image: httpd:2.4-alpine # Light-weight Apache image
+    container_name: apache-web
+    ports:
+      - "80:80" # Expose Apache on port 80 of your host
+    volumes:
+      - ./src:/var/www/html # Mount your project code into the container
+      - ./docker/apache/httpd.conf:/usr/local/apache2/conf/httpd.conf # Custom Apache config
+      - ./docker/apache/vhosts.conf:/usr/local/apache2/conf/extra/httpd-vhosts.conf # Virtual hosts config
+    depends_on:
+      - php # Ensure PHP-FPM is running before Apache
+    networks:
+      default:
+        aliases:
+          - my-php-app.local # Assign a custom hostname for easier access
+    restart: unless-stopped
+
+volumes:
+  db_data: # Define the named volume for MySQL data persistence
+
+networks:
+  default:
+    driver: bridge # Default network type

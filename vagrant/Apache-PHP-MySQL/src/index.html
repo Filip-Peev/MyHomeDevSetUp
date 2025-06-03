@@ -1,0 +1,57 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Development Setup</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Custom font for a modern look */
+        body {
+            font-family: "Inter", sans-serif;
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-blue-400 to-purple-600 min-h-screen flex items-center justify-center p-4">
+    <div class="bg-white p-8 rounded-xl shadow-2xl text-center max-w-sm w-full">
+        <h1 class="text-3xl font-bold text-gray-800 mb-6">Welcome!</h1>
+        <p class="text-gray-600 mb-8">Looks like the Server works...</p>
+
+        <div class="flex flex-col space-y-4">
+            <a href="./test/index.php"
+               class="inline-block bg-gradient-to-r from-purple-500 to-pink-500
+                      hover:from-purple-600 hover:to-pink-600
+                      text-white font-semibold py-3 px-8 rounded-full
+                      shadow-lg transform transition-transform duration-300 hover:scale-105
+                      focus:outline-none focus:ring-4 focus:ring-pink-300 focus:ring-opacity-75
+                      animate-bounce-once">
+                Go to MySQL Test
+            </a>
+
+            <a href="./test/phpinfo.php"
+               class="inline-block bg-gradient-to-r from-green-500 to-blue-500
+                      hover:from-green-600 hover:to-blue-600
+                      text-white font-semibold py-3 px-8 rounded-full
+                      shadow-lg transform transition-transform duration-300 hover:scale-105
+                      focus:outline-none focus:ring-4 focus:ring-blue-300 focus:ring-opacity-75
+                      animate-bounce-once">
+                Go to PHP Info
+            </a>
+        </div>
+    </div>
+
+    <script>
+        // Optional: Add a subtle animation class after load for a single bounce
+        document.addEventListener('DOMContentLoaded', () => {
+            const buttons = document.querySelectorAll('.animate-bounce-once');
+            buttons.forEach(button => {
+                // Remove the class after a short delay to prevent continuous bouncing
+                setTimeout(() => {
+                    button.classList.remove('animate-bounce-once');
+                }, 1000); // Adjust delay as needed
+            });
+        });
+    </script>
+</body>
+</html>
