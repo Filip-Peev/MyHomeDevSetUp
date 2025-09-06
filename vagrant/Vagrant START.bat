@@ -37,7 +37,7 @@ timeout /t 2
 echo.
 echo.
 echo.
-start http://192.168.0.126/
+start http://192.168.1.150/
 echo.
 echo.
 echo.
